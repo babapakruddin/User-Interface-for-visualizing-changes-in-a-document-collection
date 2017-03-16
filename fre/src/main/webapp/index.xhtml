@@ -1,0 +1,348 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+<h:head>
+   <title>Law Demo</title>
+      	  
+      	   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      	 
+<style>
+
+.searchBox
+{
+width: 300px;
+height: 25px;
+}
+.searchButton
+{
+width: 100px;
+height: 31px;
+}
+#searchContainer
+{
+width: 900px;
+margin-top: 150px;
+margin-left: 400px;
+}
+#de
+{
+width: 100px;
+}
+.dateBox1
+{
+height: 30px;
+margin-top: 80px;
+}
+.dateBox2
+{
+height: 30px;
+margin-top: -30px;
+margin-left: 100px;
+}
+.startDate
+{
+width : 75px;
+}
+.endDate
+{
+width : 75px;
+}
+#update_law_results
+{
+margin-top: -50px;
+margin-left: 300px;
+}
+#resultItem
+{
+width : 300px;
+border: 2px;
+
+}
+.tagcl
+{
+width: 180px;
+height: 150px;
+margin-top: -180px;
+}
+.a
+{
+width: 150px;
+}
+.eachResult{
+width:400px;height:100px;
+margin-top: 10px;
+-webkit-border-radius: 0px 0px 0px 0px;-moz-border-radius: 0px 0px 0px 0px;border-radius: 0px 0px 0px 0px;background:rgba(222,83,49,0.3);-webkit-box-shadow: #000000 1px 1px 1px;-moz-box-shadow: #000000 1px 1px 1px; box-shadow: #000000 1px 1px 1px;}
+</style>
+<script>
+$( function() {
+$("#InpDate").datepicker();
+} );
+
+</script>
+<script>
+$( function() {
+$("#endDate").datepicker();
+} );
+
+</script>
+          </h:head>
+
+<h:body>
+
+   <h:panelGroup layout = "block" id = "searchContainer" >
+    <h:form id = "f1">
+        <h:inputText id="search" placeholder = "Enter the search text" styleClass="searchBox"  value = "#{lawBean.lawSearch}"  >
+        </h:inputText>
+        <h:commandButton value="Search" styleClass = "searchButton" title="Search" actionListener="#{lawBean.executeQuery}" update = ":update_law_results" >
+				 <f:ajax execute="@form" render = ":update_law_results" />
+        </h:commandButton>
+        <h:outputText value="#{lawBean.lawSearch}" />
+    </h:form>
+   </h:panelGroup>	
+
+
+<h:panelGrid  columns="1" styleClass="dateBox1">
+<h:inputText id="InpDate" styleClass="startDate" value="startdate"/>
+</h:panelGrid>
+<h:panelGrid  columns="1" styleClass="dateBox2">
+<h:inputText id="endDate" styleClass="endDate" value="enddate"/>
+ </h:panelGrid>
+ <h:panelGrid id = "update_law_results" > 
+   
+      <ul id = "movieresults">
+   		<ui:repeat value="#{lawBean.queryLawresponse}" var="searchResult" >
+  							<h:panelGrid  styleClass="eachResult"  >
+								<p>DOKNR : #{searchResult.doknr}</p>
+								<p>Build Date Date : #{searchResult.builddate}</p>
+								<h:form>
+									<h:commandLink value = "Show Changes" title = "Show Changes" onclick="yearT()">
+										<f:ajax execute = "@form" />
+									</h:commandLink>
+								</h:form> 
+							</h:panelGrid>
+   		
+   		<div id="dialog" title="Dialog Title"></div>
+		<script>$( "#dialog" ).dialog({ autoOpen: false });</script>
+		<h:panelGrid id = "show_tree">
+		<h:panelGrid id="yearT" columns = "6" binding = "#{foo}">
+		  
+			  <h:panelGroup id = "y1" binding = "#{foo1}"></h:panelGroup>
+			  <h:panelGroup id = "y2" binding = "#{foo2}"></h:panelGroup>
+			  <h:panelGroup id = "y3" binding = "#{foo3}"></h:panelGroup>
+			  <h:panelGroup id = "y4" binding = "#{foo4}"></h:panelGroup>
+			  <h:panelGroup id = "y5" binding = "#{foo5}"></h:panelGroup>
+			  <h:panelGroup id = "y6" binding = "#{foo6}"></h:panelGroup>
+			  
+		</h:panelGrid>
+		
+		<h:panelGrid columns = "12" id="monT" >
+			  <h:panelGroup id = "m1" binding = "#{m01}"></h:panelGroup>
+			  <h:panelGroup id = "m2" binding = "#{m02}"></h:panelGroup>
+			  <h:panelGroup id = "m3" binding = "#{m03}"></h:panelGroup>
+			  <h:panelGroup id = "m4" binding = "#{m04}"></h:panelGroup>
+			  <h:panelGroup id = "m5" binding = "#{m05}"></h:panelGroup>
+			  <h:panelGroup id = "m6" binding = "#{m06}"></h:panelGroup>
+			  <h:panelGroup id = "m7" binding = "#{m07}"></h:panelGroup>
+			  <h:panelGroup id = "m8" binding = "#{m08}"></h:panelGroup>
+			  <h:panelGroup id = "m9" binding = "#{m09}"></h:panelGroup>
+			  <h:panelGroup id = "m10" binding = "#{m10}"></h:panelGroup>
+			  <h:panelGroup id = "m11" binding = "#{m11}"></h:panelGroup>
+			  <h:panelGroup id = "m12" binding = "#{m12}"></h:panelGroup>
+		</h:panelGrid>
+
+		<h:panelGrid columns = "31" id="dateT">
+		  
+			  
+		<script>
+			  function m1() {
+		  $( "#dialog" ).dialog( "open" );
+			var divT = document.getElementById('formId:dialog');
+			divT.innerHTML = '<iframe src="gt.html"></iframe>';
+		}
+		</script>
+		  	 
+			  <h:panelGroup id = "d1" binding = "#{d1}"></h:panelGroup>
+			  <h:panelGroup id = "d2" binding = "#{d2}"></h:panelGroup>
+			  <h:panelGroup id = "d3" binding = "#{d3}"></h:panelGroup>
+			  <h:panelGroup id = "d4" binding = "#{d4}"></h:panelGroup>
+			  <h:panelGroup id = "d5" binding = "#{d5}"></h:panelGroup>
+			  <h:panelGroup id = "d6" binding = "#{d6}"></h:panelGroup>
+			  <h:panelGroup id = "d7" binding = "#{d7}"></h:panelGroup>
+			  <h:panelGroup id = "d8" binding = "#{d8}"></h:panelGroup>
+			  <h:panelGroup id = "d9" binding = "#{d9}"></h:panelGroup>
+			  <h:panelGroup id = "d10" binding = "#{d10}"></h:panelGroup>
+			  <h:panelGroup id = "d11" binding = "#{d11}"></h:panelGroup>
+			  <h:panelGroup id = "d12" binding = "#{d12}"></h:panelGroup>
+			  <h:panelGroup id = "d13" binding = "#{d13}"></h:panelGroup>
+			  <h:panelGroup id = "d14" binding = "#{d14}"></h:panelGroup>
+			  <h:panelGroup id = "d15" binding = "#{d15}"></h:panelGroup>
+			  <h:panelGroup id = "d16" binding = "#{d16}"></h:panelGroup>
+			  <h:panelGroup id = "d17" binding = "#{d17}"></h:panelGroup>
+			  <h:panelGroup id = "d18" binding = "#{d18}"></h:panelGroup>
+			  <h:panelGroup id = "d19" binding = "#{d19}"></h:panelGroup>
+			  <h:panelGroup id = "d20" binding = "#{d20}"></h:panelGroup>
+			  <h:panelGroup id = "d21" binding = "#{d21}"></h:panelGroup>
+			  <h:panelGroup id = "d22" binding = "#{d22}"></h:panelGroup>
+			  <h:panelGroup id = "d23" binding = "#{d23}"></h:panelGroup>
+			  <h:panelGroup id = "d24" binding = "#{d24}"></h:panelGroup>
+			  <h:panelGroup id = "d25" binding = "#{d25}"></h:panelGroup>
+			  <h:panelGroup id = "d26" binding = "#{d26}"></h:panelGroup>
+			  <h:panelGroup id = "d27" binding = "#{d27}"></h:panelGroup>
+			  <h:panelGroup id = "d28" binding = "#{d28}"></h:panelGroup>
+			  <h:panelGroup id = "d29" binding = "#{d29}"></h:panelGroup>
+			  <h:panelGroup id = "d30" binding = "#{d30}"></h:panelGroup>
+		</h:panelGrid>
+		<script>
+		function yearT() {
+			var $foo = $("[id='#{foo.clientId}']"); 
+			var table = document.getElementById('#{foo.clientId}');
+			
+		    var cell1 = document.getElementById('#{foo1.clientId}');
+		    cell1.style.border = 'thin solid #0000FF';
+		    cell1.style.width = '50';
+			var cell2 = document.getElementById('#{foo2.clientId}');
+			cell2.style.border = 'thin solid #0000FF';
+		    var cell3 = document.getElementById('#{foo3.clientId}');
+		    cell3.style.border = 'thin solid #0000FF';
+			var cell4 = document.getElementById('#{foo4.clientId}');
+			cell4.style.border = 'thin solid #0000FF';
+			var cell5 = document.getElementById('#{foo5.clientId}');
+			cell5.style.border = 'thin solid #0000FF';
+			var cell6 = document.getElementById('#{foo6.clientId}');
+			cell6.style.border = 'thin solid #0000FF';
+		    cell1.innerHTML = '<a href ="javascript:void(0)"  style="color: blue;" onclick = "monthT()" >2012</a>';
+		    cell2.innerHTML = '<a href ="javascript:void(0)"  style="color: blue;" onclick = "monthT()" >2012</a>';
+		    cell3.innerHTML = '<a href ="javascript:void(0)"  style="color: blue;" onclick = "monthT()" >2013</a>';
+		    cell4.innerHTML = '<a href ="javascript:void(0)"  style="color: blue;" onclick = "monthT()" >2014</a>';
+		    cell5.innerHTML = '<a href ="javascript:void(0)"  style="color: blue;" onclick = "monthT()" >2015</a>';
+		    cell6.innerHTML = '<a href ="javascript:void(0)"  style="color: blue;" onclick = "monthT()" >2016</a>';
+		
+		}
+		
+		function monthT() {
+			
+			var cell1 = document.getElementById('#{m01.clientId}');
+			cell1.style.border = 'thin solid #0000FF';
+			var cell2 = document.getElementById('#{m02.clientId}');
+			cell2.style.border = 'thin solid #0000FF';
+			var cell3 = document.getElementById('#{m03.clientId}');
+			cell3.style.border = 'thin solid #0000FF';
+			var cell4 = document.getElementById('#{m04.clientId}');
+			cell4.style.border = 'thin solid #0000FF';
+			var cell5 = document.getElementById('#{m05.clientId}');
+			cell5.style.border = 'thin solid #0000FF';
+			var cell6 = document.getElementById('#{m06.clientId}');
+			cell6.style.border = 'thin solid #0000FF';
+			var cell7 = document.getElementById('#{m07.clientId}');
+			cell7.style.border = 'thin solid #0000FF';
+			var cell8 = document.getElementById('#{m08.clientId}');
+			cell8.style.border = 'thin solid #0000FF';
+			var cell9 = document.getElementById('#{m09.clientId}');
+			cell9.style.border = 'thin solid #0000FF';
+			var cell10 = document.getElementById('#{m10.clientId}');
+			cell10.style.border = 'thin solid #0000FF';
+			var cell11 = document.getElementById('#{m11.clientId}');
+			cell11.style.border = 'thin solid #0000FF';
+			var cell12 = document.getElementById('#{m12.clientId}');
+			cell12.style.border = 'thin solid #0000FF';
+		    cell1.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Jan</a>';
+		    cell2.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Feb</a>';
+		    cell3.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Mar</a>';
+		    cell4.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Apr</a>';
+		    cell5.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >May</a>';
+		    cell6.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Jun</a>';
+		    cell7.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Jul</a>';
+		    cell8.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Aug</a>';
+		    cell9.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Sep</a>';
+			cell10.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Oct</a>';
+			cell11.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Nov</a>';
+			cell12.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "dateT()" >Dec</a>';
+			
+		   }
+			
+		function dateT() {
+	
+		    var c1 = document.getElementById('#{d1.clientId}');
+		    var c2 = document.getElementById('#{d2.clientId}');
+			var c3 = document.getElementById('#{d3.clientId}');
+		    var c4 = document.getElementById('#{d4.clientId}');
+		 	var c5 = document.getElementById('#{d5.clientId}');
+		    var c6 = document.getElementById('#{d6.clientId}');
+		 	var c7 = document.getElementById('#{d7.clientId}');
+		    var c8 = document.getElementById('#{d8.clientId}');
+			var c9 = document.getElementById('#{d9.clientId}');
+		    var c10 = document.getElementById('#{d10.clientId}');
+		 	var c11 = document.getElementById('#{d11.clientId}');
+		    var c12 = document.getElementById('#{d12.clientId}');
+		 	var c13 = document.getElementById('#{d13.clientId}');
+		    var c14 = document.getElementById('#{d14.clientId}');
+			var c15 = document.getElementById('#{d15.clientId}');
+		    var c16 = document.getElementById('#{d16.clientId}');
+		 	var c17 = document.getElementById('#{d17.clientId}');
+		    var c18 = document.getElementById('#{d18.clientId}');
+		 	var c19 = document.getElementById('#{d19.clientId}');
+		    var c20 = document.getElementById('#{d20.clientId}');
+			var c21 = document.getElementById('#{d21.clientId}');
+		    var c22 = document.getElementById('#{d22.clientId}');
+		 	var c23 = document.getElementById('#{d23.clientId}');
+		    var c24 = document.getElementById('#{d24.clientId}');
+			var c25 = document.getElementById('#{d25.clientId}');
+		    var c26 = document.getElementById('#{d26.clientId}');
+			var c27 = document.getElementById('#{d27.clientId}');
+		    var c28 = document.getElementById('#{d28.clientId}');
+		 	var c29 = document.getElementById('#{d29.clientId}');
+		    var c30 = document.getElementById('#{d30.clientId}');
+		    
+		    c1.innerHTML = '<a  href ="javascript:void(0)"  id="opener" onclick = "m1()">01</a>';
+			c2.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >02</a>';
+		    c3.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >03</a>';
+		    c4.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >04</a>';
+		    c5.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >05</a>';
+		    c6.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >06</a>';
+		    c7.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >07</a>';
+		    c8.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >08</a>';
+		    c9.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()" >09</a>';
+		    c10.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">10</a>';
+		    c11.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">11</a>';
+		    c12.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">12</a>';
+			c13.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">13</a>';
+			c14.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">14</a>';
+			c15.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">15</a>';
+			c16.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">16</a>';
+			c17.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">17</a>';
+			c18.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">18</a>';
+			c19.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">19</a>';
+			c20.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">20</a>';
+			c21.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">21</a>';
+			c22.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">22</a>';
+			c23.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">23</a>';
+			c24.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">24</a>';
+			c25.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">25</a>';
+			c26.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">26</a>';
+			c27.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">27</a>';
+			c28.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">28</a>';
+			c29.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">29</a>';
+			c30.innerHTML = '<a  href ="javascript:void(0)"  style="color: blue;" onclick = "m1()">30</a>';
+			}
+			
+			
+		</script>
+   		
+   		</h:panelGrid>
+   		</ui:repeat>
+   	</ul>
+	
+</h:panelGrid>
+   
+   
+   	
+</h:body>
+    		
+</f:view>
+</html>
