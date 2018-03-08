@@ -1,14 +1,14 @@
-package org.std.the.law.app;
+package com.masterthesis.ovgu;
 
 import org.primefaces.model.chart.BarChartModel;
 
-public class result_law {
+public class ResultLaw {
 	public String doknr;
 	public String builddate;
 	private String diffHtml;
 	private BarChartModel perLwBarMD1;
 
-	result_law(String a,String b, String c)
+	ResultLaw(String a,String b, String c)
 	{
 		 setDoknr(a);
 		 setBuilddate(b);
@@ -16,7 +16,7 @@ public class result_law {
 	}
 
 
-	public result_law() {
+	public ResultLaw() {
 		// TODO Auto-generated constructor stub
 	}
 
