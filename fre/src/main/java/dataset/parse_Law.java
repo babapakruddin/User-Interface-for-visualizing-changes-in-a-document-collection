@@ -1,10 +1,10 @@
-package org.std.the.law.app;
+package com.masterthesis.ovgu;
 
 import java.util.ArrayList;
 
 import org.primefaces.model.chart.BarChartModel;
 
-public class parse_Law {
+public class Parse_Law {
 	public String doknr;
 	public String builddate;
 	public String norm;
