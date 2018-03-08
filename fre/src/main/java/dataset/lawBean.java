@@ -1,4 +1,4 @@
-package org.std.the.law.app;
+package com.masterthesis.ovgu;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -33,7 +33,7 @@ import java.util.Date;
 
 @ManagedBean(name = "lawBean", eager = true)
 @ViewScoped
-public class lawBean implements Serializable {
+public class LawBean implements Serializable {
 
 	/**
 	 * 
