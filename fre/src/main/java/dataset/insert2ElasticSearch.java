@@ -1,4 +1,4 @@
-package org.std.the.law.app;
+package org.masterthesis.ovgu;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.*;
 
 
 
-public class insert2ElasticSearch {
+public class InsertTOElasticSearch {
 
 	public String insertES(ArrayList<parse_Law> lawdata) throws JsonProcessingException, UnknownHostException
 	{
