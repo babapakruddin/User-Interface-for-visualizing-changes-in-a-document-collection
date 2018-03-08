@@ -1,4 +1,4 @@
-package org.std.the.law.app;
+package com.masterthesis.ovgu;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +24,7 @@ import org.w3c.dom.Element;
 
 
 
-public class xml_Parse {
+public class XmlParse {
 	
 	
 	public static ArrayList<ArrayList<parse_Law>> order_ParseLaw(ArrayList<parse_Law> lawdata, Set<String> unqDoknr)
